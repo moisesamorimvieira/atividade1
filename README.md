@@ -30,46 +30,25 @@ Com o emprego da função add_repeating_timer_ms(), presente na ferramenta Pico 
 5. **Extensões no VScode do Raspberry Pi Pico Project e CMake**
 6. **Wokwi**;
 
-## 💻 Instruções para Importar, Compilar e Rodar o Código Localmente
-
-Siga os passos abaixo para clonar o repositório, importar no VS Code usando a extensão do **Raspberry Pi Pico Project**, compilar e executar o código.
-
-1. **Clone o repositório para sua máquina local**  
-   Abra o terminal e execute os comandos abaixo:
-   ```bash
-   git clone https://github.com/usuario/projeto.git
-   cd projeto
-
-2. **Abra o VS Code e instale a extensão "Raspberry Pi Pico Project" (caso não já a tenha instalada)**
- - No VS Code, vá até "Extensões" (Ctrl+Shift+X)
- - Pesquise por "Raspberry Pi Pico Project"
- - Instale a extensão oficial
-
-3. **Importe o projeto no VS Code**
- - No VS Code, na barra lateral do lado esquerdo clique em "Raspberry Pi Pico Project" <img src="images/icon_raspberry_pico_project.png" width="25px">
- - No menu que aparecer clique em <img src="images/icon_import_project.png" height="25px">
- - Clicando em "Change" escolha a pasta clonada do repositório
- - Escolha a versão do SDK 2.1.0
- - Clique em "Import"
-
-
-    <img src="images/icon_import_project_settings.png" width="500px">
-
-
-4. **Compile o projeto**
- - Com o projeto aberto no VS Code, pressione <img src="images/icon_compile.png" height="25px">
- - Aguarde a finalização do processo de build
-
-5. **Rode o código no Raspberry Pi Pico**
- - Conecte o Raspberry Pi Pico ao PC segurando o botão "BOOTSEL".
- - Arraste e solte o arquivo `.uf2`, localizado dentro da pasta "build" do seu projeto, gerado na unidade USB montada.
- - O código será carregado automaticamente e o Pico será reiniciado.
- - Caso tenha instalado o driver com o Zadig clique em "Run" ao lado do botão <img src="images/icon_compile.png" height="25px">
-
-
 ## 🔧 Funcionalidades Implementadas:
 
+• Controlo de LEDs via GPIO: O código inicializa e configura três pinos GPIO (11, 12 e 13) como saídas para controlar os LEDs vermelho, amarelo e verde, respetivamente [o código]. A função gpio_put() é utilizada para ligar ou desligar os LEDs [o código]. O RP2040 pode conectar um dos seus periféricos internos a cada GPIO.
+•
+Temporizador Periódico: A função add_repeating_timer_ms() configura um temporizador que chama a função semaforo_callback() a cada 3000 milissegundos, permitindo a transição automática entre os estados do semáforo. A biblioteca pico/time.h oferece funções para criar timestamps, colocar o microcontrolador em sleep e usar alarms e temporizadores repetitivos.
 
+• Função de Callback: A função semaforo_callback() é um callback, ou seja, é executada automaticamente quando o temporizador dispara [o código]. Essa função é responsável por desligar todos os LEDs e ligar o LED correspondente ao estado atual do semáforo, permitindo a mudança sequencial das luzes [o código]. A função alarm_pool_add_repeating_timer_us adiciona um temporizador repetitivo ao alarm pool.
+
+• Comunicação Serial: A função stdio_init_all() inicializa a comunicação serial, permitindo que o programa exiba mensagens através do terminal, como o tempo decorrido em milissegundos. A biblioteca pico_stdio oferece suporte para entrada e saída através de UART, USB ou semi-hosting.
+
+• Controlo de Fluxo: O programa utiliza um loop while(true) para executar continuamente e imprimir o tempo decorrido a cada segundo. O código também utiliza a função sleep_ms() para pausar a execução por um segundo.
+
+• Controlo de Estado do Semáforo: O código utiliza uma variável inteira estado_semaforo para rastrear o estado atual do semáforo (0 = vermelho, 1 = amarelo, 2 = verde). Este estado é usado para determinar qual LED deve ser ligado no callback do temporizador.
+Além disso, o código demonstra o uso de algumas funcionalidades importantes do SDK, como:
+
+• A inclusão de headers para acesso às funcionalidades da biblioteca como stdio.h para a função printf, pico/stdlib.h para a inicialização padrão, hardware/gpio.h para controlar os GPIOs e pico/time.h para usar funções de tempo.
+
+• Uso de funções do SDK para inicialização, manipulação de GPIO, temporização, e saída para stdout.
+Em resumo, o código implementa um semáforo básico que utiliza os recursos de tempo e GPIO do RP2040, incluindo a capacidade de exibir mensagens na porta serial. Os GPIOs são usados para controlar LEDs, e um temporizador periódico com uma função de callback é usado para alternar as luzes do semáforo.
 
 ## 💻 Desenvolvedores
  
