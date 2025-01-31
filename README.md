@@ -42,13 +42,11 @@ Temporizador Periódico: A função add_repeating_timer_ms() configura um tempor
 
 • Controlo de Fluxo: O programa utiliza um loop while(true) para executar continuamente e imprimir o tempo decorrido a cada segundo. O código também utiliza a função sleep_ms() para pausar a execução por um segundo.
 
-• Controlo de Estado do Semáforo: O código utiliza uma variável inteira estado_semaforo para rastrear o estado atual do semáforo (0 = vermelho, 1 = amarelo, 2 = verde). Este estado é usado para determinar qual LED deve ser ligado no callback do temporizador.
-Além disso, o código demonstra o uso de algumas funcionalidades importantes do SDK, como:
+• Controlo de Estado do Semáforo: O código utiliza uma variável inteira estado_semaforo para rastrear o estado atual do semáforo (0 = vermelho, 1 = amarelo, 2 = verde). Este estado é usado para determinar qual LED deve ser ligado no callback do temporizador. Além disso, o código demonstra o uso de algumas funcionalidades importantes do SDK, como:
 
 • A inclusão de headers para acesso às funcionalidades da biblioteca como stdio.h para a função printf, pico/stdlib.h para a inicialização padrão, hardware/gpio.h para controlar os GPIOs e pico/time.h para usar funções de tempo.
 
-• Uso de funções do SDK para inicialização, manipulação de GPIO, temporização, e saída para stdout.
-Em resumo, o código implementa um semáforo básico que utiliza os recursos de tempo e GPIO do RP2040, incluindo a capacidade de exibir mensagens na porta serial. Os GPIOs são usados para controlar LEDs, e um temporizador periódico com uma função de callback é usado para alternar as luzes do semáforo.
+• Uso de funções do SDK para inicialização, manipulação de GPIO, temporização, e saída para stdout. Em resumo, o código implementa um semáforo básico que utiliza os recursos de tempo e GPIO do RP2040, incluindo a capacidade de exibir mensagens na porta serial. Os GPIOs são usados para controlar LEDs, e um temporizador periódico com uma função de callback é usado para alternar as luzes do semáforo.
 
 ## 💻 Desenvolvedores
  
