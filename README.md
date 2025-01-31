@@ -32,21 +32,17 @@ Com o emprego da função add_repeating_timer_ms(), presente na ferramenta Pico 
 
 ## 🔧 Funcionalidades Implementadas:
 
-• Controlo de LEDs via GPIO: O código inicializa e configura três pinos GPIO (11, 12 e 13) como saídas para controlar os LEDs vermelho, amarelo e verde, respetivamente [o código]. A função gpio_put() é utilizada para ligar ou desligar os LEDs [o código]. O RP2040 pode conectar um dos seus periféricos internos a cada GPIO.
-•
-Temporizador Periódico: A função add_repeating_timer_ms() configura um temporizador que chama a função semaforo_callback() a cada 3000 milissegundos, permitindo a transição automática entre os estados do semáforo. A biblioteca pico/time.h oferece funções para criar timestamps, colocar o microcontrolador em sleep e usar alarms e temporizadores repetitivos.
+1. LEDs via GPIO: Controla LEDs nos pinos 11, 12 e 13.
 
-• Função de Callback: A função semaforo_callback() é um callback, ou seja, é executada automaticamente quando o temporizador dispara [o código]. Essa função é responsável por desligar todos os LEDs e ligar o LED correspondente ao estado atual do semáforo, permitindo a mudança sequencial das luzes [o código]. A função alarm_pool_add_repeating_timer_us adiciona um temporizador repetitivo ao alarm pool.
+2. Temporizador Periódico: Usa add_repeating_timer_ms() para alternar LEDs a cada 3000 ms.
 
-• Comunicação Serial: A função stdio_init_all() inicializa a comunicação serial, permitindo que o programa exiba mensagens através do terminal, como o tempo decorrido em milissegundos. A biblioteca pico_stdio oferece suporte para entrada e saída através de UART, USB ou semi-hosting.
+3. Callback: semaforo_callback() desliga todos os LEDs e liga o LED correspondente ao estado atual do semáforo.
 
-• Controlo de Fluxo: O programa utiliza um loop while(true) para executar continuamente e imprimir o tempo decorrido a cada segundo. O código também utiliza a função sleep_ms() para pausar a execução por um segundo.
+4. Comunicação Serial: Inicializa com stdio_init_all() para exibir mensagens no terminal.
 
-• Controlo de Estado do Semáforo: O código utiliza uma variável inteira estado_semaforo para rastrear o estado atual do semáforo (0 = vermelho, 1 = amarelo, 2 = verde). Este estado é usado para determinar qual LED deve ser ligado no callback do temporizador. Além disso, o código demonstra o uso de algumas funcionalidades importantes do SDK, como:
+5. Controlo de Fluxo: Loop contínuo while(true) e sleep_ms() para pausar.
 
-• A inclusão de headers para acesso às funcionalidades da biblioteca como stdio.h para a função printf, pico/stdlib.h para a inicialização padrão, hardware/gpio.h para controlar os GPIOs e pico/time.h para usar funções de tempo.
-
-• Uso de funções do SDK para inicialização, manipulação de GPIO, temporização, e saída para stdout. Em resumo, o código implementa um semáforo básico que utiliza os recursos de tempo e GPIO do RP2040, incluindo a capacidade de exibir mensagens na porta serial. Os GPIOs são usados para controlar LEDs, e um temporizador periódico com uma função de callback é usado para alternar as luzes do semáforo.
+6. Estado do Semáforo: Variável estado_semaforo rastreia o estado atual do semáforo.
 
 ## 💻 Desenvolvedores
  
